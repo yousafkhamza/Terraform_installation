@@ -14,19 +14,19 @@ function terraform_installtion () {
 
 which terraform >/dev/null 2>&1
 if [ $? = 0 ]; then
-    echo "Terrform Already Installed On The Server..........."; echo ""
-    echo "Terrform version is given below......"
+    echo "Terraform Already Installed On The Server..........."; echo ""
+    echo "The Terraform version is given below......"
     echo "-----------"
     terraform -v
     echo "-----------"
     sleep 1
     exit 1
 else
-    echo "Terrform installation begins.........."
+    echo "Terraform installation begins.........."
     sleep 1
     terraform_installtion
-    echo "Terraform installation successfull.........."; echo ""
-    echo "Terrform version is given below......"
+    echo "Terraform installation successful.........."; echo ""
+    echo "The Terraform version is given below......."
     echo "-----------"
     terraform -v
     echo "-----------"
