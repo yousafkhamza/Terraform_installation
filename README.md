@@ -17,7 +17,9 @@ What is terraform: Terraform is an open-source infrastructure as code software t
 
 ```sh
 yum install git -y
+yum install unzip -y
 or 
+sudo apt install git -y
 sudo apt install git -y
 ```
 > it depends on your operating system repository
