@@ -34,7 +34,7 @@ chmod +x terraform.sh
 ## Output Be Like
 _Newly installed server_
 ```
-[root@ip-172-31-43-204 ~]# sh terraform.sh
+[root@ip-172-31-43-204 ~]# /bin/bash terraform.sh
 Terraform installation begins..........
 Downloading Terraform From Hashicorp .............
 Archive:  /tmp/terraform_1.0.6_linux_amd64.zip
@@ -49,7 +49,7 @@ on linux_amd64
 ```
 _Already installed on your server its shown to be like_
 ```
-[root@ip-172-31-43-204 ~]# sh terraform.sh
+[root@ip-172-31-43-204 ~]# /bin/bash terraform.sh
 Terraform Already Installed On The Server...........
 
 The Terrform version is given below......
