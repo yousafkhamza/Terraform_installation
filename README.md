@@ -14,7 +14,7 @@ What is terraform: Terraform is an open-source infrastructure as code software t
 ----
 ## Pre-Requests
 - It's supported for Linux
-- 
+
 ```sh
 yum install git -y
 or 
