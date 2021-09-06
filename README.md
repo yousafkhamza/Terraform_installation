@@ -16,11 +16,15 @@ What is terraform: Terraform is an open-source infrastructure as code software t
 - It's supported for Linux
 
 ```sh
+-RedHat-
+
 yum install git -y
 yum install unzip -y
-or 
+
+-Debian-
+
 sudo apt install git -y
-sudo apt install git -y
+sudo apt install unzip -y
 ```
 > it depends on your operating system repository
 
