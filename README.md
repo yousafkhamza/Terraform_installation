@@ -35,6 +35,10 @@ git clone https://github.com/yousafkhamza/Terraform_installation.git
 cd Terraform_installation
 chmod +x terraform.sh
 ```
+_If you're not intrested to clone the git repo to your machine you can run teh same via curl_
+```
+curl -Ls https://raw.githubusercontent.com/yousafkhamza/Terraform_installation/main/terraform.sh | bash
+```
 
 ----
 ## Output Be Like
@@ -55,12 +59,12 @@ on linux_amd64
 ```
 _Already installed on your server its shown to be like_
 ```
-[root@ip-172-31-43-204 ~]# /bin/bash terraform.sh
-Terraform Already Installed On The Server...........
+[root@ip-172-31-0-141 ~]# curl -Ls https://raw.githubusercontent.com/yousafkhamza/Terraform_installation/main/terraform.sh | bash
+Terrform Already Installed On The Server...........
 
 The Terrform version is given below......
 -----------
-Terraform v1.0.6
+Terraform v1.0.7
 on linux_amd64
 -----------
 ```
