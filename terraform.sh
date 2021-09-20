@@ -6,7 +6,7 @@
 
 function terraform_installtion () {
     echo "Downloading Terraform From Hashicorp ............."
-    wget https://releases.hashicorp.com/terraform/1.0.7/terraform_1.0.7_linux_amd64.zip -P /tmp/ >/dev/null 2>&1
+    wget $(curl -s https://www.terraform.io/downloads.html | grep linux_amd | grep -Eo 'href="[^\"]+"' | cut -d= -f2 | sed 's/["]//g') -P /tmp/ >/dev/null 2>&1
     unzip /tmp/terraform_*.zip
     sudo mv terraform /usr/bin/
     rm -f /tmp/terraform_*.zip
