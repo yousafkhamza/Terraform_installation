@@ -20,8 +20,8 @@ if [ $? = 0 ]; then
     echo "-----------"
     terraform -v | grep "out of date" >/dev/null 2>&1
     if [[ "$?" = 0 ]]; then
-            echo "You're terraform version is out dated so we are going to update...."
-            echo "Update starts in 10sec. if you don't like to update please exit the script using [ctrl + c]...."
+            echo "You're terraform version is out dated so we are going to update automatically...."
+            echo "Updation starts in 10sec. if you don't needs to update then please exit the script using [ctrl + c]...."
             for ((i=0;i<10;i++)); do sleep 1; printf "$i..\n"; done
             echo "Updation begins...."
             echo "Removing the current version of terraform...."; sudo rm -r $(which terraform)
