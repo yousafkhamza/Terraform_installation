@@ -17,12 +17,10 @@ if [ $? = 0 ]; then
     echo "Terrform Already Installed On The Server..........."; echo ""
     echo "The Terrform version is given below......"
     echo "-----------"
-    rm -f /tmp/.tfversion.txt
-    terraform -v | tee -a /tmp/.tfversion.txt
+    version=$(terraform -v)
     echo "-----------"
-    cat /tmp/.tfversion.txt | grep "is out of date!" >/dev/null
+    cat $version | grep "is out of date!" >/dev/null
     if [ $? = 0 ]; then
-            rm -f /tmp/.tfversion.txt
             read -p "Terraform version is out dated so do you need to update the version Y/N: " con
             if [[ "$con" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
                 echo "removing current version of terraform from your device"; rm -f $(which terraform)
