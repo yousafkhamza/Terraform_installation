@@ -18,9 +18,8 @@ if [ $? = 0 ]; then
     echo "-----------"
     terraform -v
     echo "-----------"
-    vcheck=$(curl -s https://www.terraform.io/downloads.html | grep linux_amd | grep -Eo 'href="[^\"]+"' | cut -d= -f2 | sed 's/["]//g' | cut -d"/" -f5)
-    cvcheck=$(terraform -v | head -n1 | cut -d"v" -f2)
-    if [ $cvcheck != $vcheck ]; then
+    cvcheck=$(terraform -v | grep "out of date")
+    if [ $? = 0 ]; then
             read -p "Terraform version is out dated so do you need to update the version Y/N: " con
             if [[ "$con" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
                 echo "removing current version of terraform from your device"; sudo rm -r $(which terraform)
