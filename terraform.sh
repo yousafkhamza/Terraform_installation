@@ -3,13 +3,12 @@
 # -----------------------------------------
 # Terraform installation script for Linux
 # -----------------------------------------
-
 function terraform_installation () {
     echo "Downloading Terraform From Hashicorp ............."
     wget $(curl -s https://www.terraform.io/downloads.html | grep linux_amd | grep -Eo 'href="[^\"]+"' | cut -d= -f2 | sed 's/["]//g') -P /tmp/ >/dev/null 2>&1
     unzip /tmp/terraform_*.zip
     sudo mv terraform /usr/bin/
-    rm -f /tmp/terraform_*.zip
+    sudo rm -f /tmp/terraform_*.zip
 }
 
 which terraform >/dev/null 2>&1
@@ -17,13 +16,13 @@ if [ $? = 0 ]; then
     echo "Terrform Already Installed On The Server..........."; echo ""
     echo "The Terrform version is given below......"
     echo "-----------"
-    version=$(terraform -v)
+    terraform -v
     echo "-----------"
-    cat $version | grep "is out of date!" >/dev/null
-    if [ $? = 0 ]; then
+    vcheck=$(curl -s https://www.terraform.io/downloads.html | grep linux_amd | grep -Eo 'href="[^\"]+"' | cut -d= -f2 | sed 's/["]//g' | cut -d"/" -f5)
+    if [ $(terraform -v | head -n1 | cut -d"v" -f2) != $vcheck ]; then
             read -p "Terraform version is out dated so do you need to update the version Y/N: " con
             if [[ "$con" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-                echo "removing current version of terraform from your device"; rm -r $(which terraform)
+                echo "removing current version of terraform from your device......"; sudo rm -r $(which terraform)
                 terraform_installation
             fi
     fi
