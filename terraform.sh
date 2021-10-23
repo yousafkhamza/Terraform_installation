@@ -4,7 +4,7 @@
 # Terraform installation script for Linux
 # -----------------------------------------
 
-function terraform_installtion () {
+function terraform_installation () {
     echo "Downloading Terraform From Hashicorp ............."
     wget $(curl -s https://www.terraform.io/downloads.html | grep linux_amd | grep -Eo 'href="[^\"]+"' | cut -d= -f2 | sed 's/["]//g') -P /tmp/ >/dev/null 2>&1
     unzip /tmp/terraform_*.zip
@@ -17,14 +17,24 @@ if [ $? = 0 ]; then
     echo "Terrform Already Installed On The Server..........."; echo ""
     echo "The Terrform version is given below......"
     echo "-----------"
-    terraform -v
+    rm -f /tmp/.tfversion.txt
+    terraform -v | tee -a /tmp/.tfversion.txt
     echo "-----------"
+    cat /tmp/.tfversion.txt | grep "is out of date!" >/dev/null
+    if [ $? = 0 ]; then
+            rm -f /tmp/.tfversion.txt
+            read -p "Terraform version is out dated so do you need to update the version Y/N: " con
+            if [[ "$con" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
+                echo "removing current version of terraform from your device"; rm -f $(which terraform)
+                terraform_installation
+            fi
+    fi
     sleep 1
     exit 1
 else
     echo "Terrform installation begins.........."
     sleep 1
-    terraform_installtion
+    terraform_installation
     echo "Terraform installation successful.........."; echo ""
     echo "The Terrform version is given below......"
     echo "-----------"
