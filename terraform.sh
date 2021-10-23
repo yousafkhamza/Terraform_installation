@@ -26,6 +26,10 @@ if [ $? = 0 ]; then
             echo "Updation begins...."
             echo "Removing the current version of terraform...."; sudo rm -r $(which terraform)
             terraform_installation
+            echo "Terrafrom Updation is successful. Current version is given below......"
+            echo "-----------"
+            terraform -v
+            echo "-----------"
         fi
     fi
     sleep 1
