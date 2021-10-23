@@ -3,6 +3,9 @@
 # -----------------------------------------
 # Terraform installation script for Linux
 # -----------------------------------------
+
+vcheck=$(curl -s https://www.terraform.io/downloads.html | grep linux_amd | grep -Eo 'href="[^\"]+"' | cut -d= -f2 | sed 's/["]//g' | cut -d"/" -f5)
+
 function terraform_installation () {
     echo "Downloading Terraform From Hashicorp ............."
     wget $(curl -s https://www.terraform.io/downloads.html | grep linux_amd | grep -Eo 'href="[^\"]+"' | cut -d= -f2 | sed 's/["]//g') -P /tmp/ >/dev/null 2>&1
@@ -18,7 +21,6 @@ if [ $? = 0 ]; then
     echo "-----------"
     terraform -v
     echo "-----------"
-    vcheck=$(curl -s https://www.terraform.io/downloads.html | grep linux_amd | grep -Eo 'href="[^\"]+"' | cut -d= -f2 | sed 's/["]//g' | cut -d"/" -f5)
     if [ $(terraform -v | head -n1 | cut -d"v" -f2) != $vcheck ]; then
             read -p "Terraform version is out dated so do you need to update the version Y/N: " con
             if [[ "$con" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
