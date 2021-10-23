@@ -18,7 +18,7 @@ if [ $? = 0 ]; then
     echo "-----------"
     terraform -v
     echo "-----------"
-    cvcheck=$(terraform -v | grep "out of date")
+    terraform -v | grep "out of date" >/dev/null 2>&1
     if [ $? = 0 ]; then
             read -p "Terraform version is out dated so do you need to update the version Y/N: " con
             if [[ "$con" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
