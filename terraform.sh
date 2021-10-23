@@ -18,11 +18,12 @@ if [ $? = 0 ]; then
     echo "-----------"
     terraform -v
     echo "-----------"
-    terraform -v | grep "out of date"
+    terraform -v | grep "out of date" >/dev/null 2>&1
     if [[ "$?" = 0 ]]; then
+        echo "test"
         read -p "Terraform version is out dated so do you need to update the version Y/N: " con
         if [[ "$con" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-            echo "removing current version of terraform from your device"; sudo rm -r $(which terraform)
+            echo "Removing current version of terraform from your device"; sudo rm -r $(which terraform)
             terraform_installation
         fi
     fi
