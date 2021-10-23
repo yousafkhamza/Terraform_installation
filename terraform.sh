@@ -23,7 +23,7 @@ if [ $? = 0 ]; then
     if [ $? = 0 ]; then
             read -p "Terraform version is out dated so do you need to update the version Y/N: " con
             if [[ "$con" =~ ^([yY][eE][sS]|[yY])+$ ]]; then
-                echo "removing current version of terraform from your device"; rm -f $(which terraform)
+                echo "removing current version of terraform from your device"; rm -r $(which terraform)
                 terraform_installation
             fi
     fi
