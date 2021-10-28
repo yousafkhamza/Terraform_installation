@@ -9,7 +9,7 @@ function terraform_installation () {
     wget --no-check-certificate $(curl -s https://www.terraform.io/downloads.html | grep linux_amd | grep -Eo 'href="[^\"]+"' | cut -d= -f2 | sed 's/["]//g') -P /tmp/ >/dev/null 2>&1
     if [ $? = 0 ]; then
         unzip /tmp/terraform_*.zip
-        sudo mv terraform /bin/
+        sudo mv terraform /usr/bin/
         sudo rm -f /tmp/terraform_*.zip
     else
             echo "Terraform Downloading is failed.... So, please be try the same via manually"
@@ -30,7 +30,8 @@ if [ $? = 0 ]; then
         echo "Updation starts in 10sec. if you don't needs to update then please exit the script using [ctrl + c]...."
         for ((i=0;i<10;i++)); do sleep 1; printf "$i..\n"; done
         echo "Updation begins...."
-        echo "Removing the current version of terraform...."; sudo rm -rf $(which terraform)
+        echo "Removing the current version of terraform....";
+        sudo rm -rf $(which terraform)
         terraform_installation
         echo "Terrafrom Updation is successful. Current version is given below......"
         echo "-----------"
