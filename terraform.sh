@@ -12,8 +12,8 @@ function terraform_installation () {
         sudo mv terraform /usr/bin/
         sudo rm -f /tmp/terraform_*.zip
     else
-            echo "Terraform Downloading is failed.... So, please be try the same via manually"
-            echo "https://www.terraform.io/downloads.html"
+        echo "Terraform Downloading is failed.... So, please be try the same via manually"
+        echo "https://www.terraform.io/downloads.html"
     fi
 }
 
