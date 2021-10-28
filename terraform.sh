@@ -5,10 +5,16 @@
 # -----------------------------------------
 function terraform_installation () {
     echo "Downloading Terraform From Hashicorp ............."
-    wget $(curl -s https://www.terraform.io/downloads.html | grep linux_amd | grep -Eo 'href="[^\"]+"' | cut -d= -f2 | sed 's/["]//g') -P /tmp/ >/dev/null 2>&1
-    unzip /tmp/terraform_*.zip
-    sudo mv terraform /usr/bin/
     sudo rm -f /tmp/terraform_*.zip
+    wget --no-check-certificate $(curl -s https://www.terraform.io/downloads.html | grep linux_amd | grep -Eo 'href="[^\"]+"' | cut -d= -f2 | sed 's/["]//g') -P /tmp/ >/dev/null 2>&1
+    if [ $? = 0 ]; then
+        unzip /tmp/terraform_*.zip
+        sudo mv terraform /usr/bin/
+        sudo rm -f /tmp/terraform_*.zip
+   else
+        echo "Terraform Downloading is failed.... So, please be try the same via manually"
+        echo "https://www.terraform.io/downloads.html"
+   fi
 }
 
 which terraform >/dev/null 2>&1
